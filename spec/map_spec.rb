@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+class NonExistingCursorError < StandardError; end
 require_relative './test_helper'
 require_relative './../lib/map'
 require_relative './../lib/cursor'
@@ -21,7 +21,7 @@ end
 
 def test_cursor
   Assert.assert_equal(1) { @cursor.x }
-  Assert.assert_equal(1) { @cursor.x }
+  Assert.assert_equal(1) { @cursor.y }
 end
 
 def test_multiple_cursors
@@ -81,7 +81,7 @@ def test_invalid_coord_y
 end
 
 def test_invalid_cursor_ind
-  Assert.assert_error(RangeError) { @map.move(:right, 2) }
+  Assert.assert_error(NonExistingCursorError) { @map.move(:right, 2) }
 end
 
 test_map

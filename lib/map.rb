@@ -25,7 +25,7 @@ class Map
       @additional_cursors[index].send(direction.to_s)
       @additional_cursors[index].validate_new_position(height, width)
     elsif index >= 0
-      raise RangeError
+      raise NonExistingCursorError # add a custom error something like "NonExistingCursor"
     else
       @cursor.send(direction.to_s)
       @cursor.validate_new_position(height, width)
