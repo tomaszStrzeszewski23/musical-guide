@@ -19,7 +19,22 @@ def test_map
   Assert.assert_equal(5) { @map.width }
 end
 
+def test_cursor
+  Assert.assert_equal(1) { @cursor.x }
+  Assert.assert_equal(1) { @cursor.x }
+end
+
+def test_multiple_cursors
+  Assert.assert_equal(1) { @map.additional_cursors[0].x }
+  Assert.assert_equal(1) { @map.additional_cursors[0].y }
+end
+
 def test_moves
+  Assert.assert_equal(2) do
+    @map.move(:right, 0)
+    @map.additional_cursors[0].x
+  end
+
   Assert.assert_equal(2) do
     @map.move(:right)
     @map.cursor.x
@@ -42,16 +57,6 @@ def test_moves
     @map.move(:left)
     @map.cursor.x
   end
-end
-
-def test_cursor
-  Assert.assert_equal(1) { @cursor.x }
-  Assert.assert_equal(1) { @cursor.x }
-end
-
-def test_multiple_cursors
-  Assert.assert_equal(1) { @map.additional_cursors[0].x }
-  Assert.assert_equal(1) { @map.additional_cursors[0].y }
 end
 
 def test_invalid_cases
@@ -80,7 +85,7 @@ def test_invalid_cursor_ind
 end
 
 test_map
-test_moves
 test_cursor
-test_invalid_cases
 test_multiple_cursors
+test_moves
+test_invalid_cases
