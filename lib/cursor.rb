@@ -4,16 +4,16 @@ class Cursor
   attr_accessor :x, :y
 
   def initialize
-    @x = 0
-    @y = 0
+    @x = 1
+    @y = 1
   end
 
   def up
-    @y -= 1
+    @y += 1
   end
 
   def down
-    @y += 1
+    @y -= 1
   end
 
   def left
@@ -25,6 +25,6 @@ class Cursor
   end
 
   def validate_new_position(height, width)
-    raise RangeError unless (@x >= 0 && @y >= 0) && (@x < height && @y < width)
+    raise RangeError unless (@x >= 1 && @y >= 1) && (@x <= height && @y <= width)
   end
 end
