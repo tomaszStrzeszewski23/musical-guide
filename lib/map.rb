@@ -4,6 +4,7 @@ require_relative './cursor'
 
 class Map
   attr_reader :height, :width, :cursor
+
   def initialize(height, width)
     @height = height
     @width  = width
@@ -11,18 +12,12 @@ class Map
   end
 
   def move(direction)
-    case direction
-    when :up
-      @cursor.up
-    when :down
-      @cursor.down
-    when :left
-      @cursor.left
-    when :right
-      @cursor.right
-    else
-      raise ArgumentError
-    end
-  @cursor.validate_new_position(height, width)
+    validate_direction(direction)
+    @cursor.send(direction.to_s)
+    @cursor.validate_new_position(height, width)
+  end
+
+  def validate_direction(direction)
+    raise ArgumentError unless %i[up down left right].include? direction
   end
 end

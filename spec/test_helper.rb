@@ -33,5 +33,5 @@ class Assert
 
   def self.green
     32
-  end  
+  end
 end
